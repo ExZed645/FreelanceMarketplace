@@ -1,18 +1,47 @@
 
-const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
+// Show and hide password fields
+const passwordToggles = document.querySelectorAll(".toggle-password");
 
-togglePassword.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePassword.textContent = "Hide";
-    } else {
-        passwordInput.type = "password";
-        togglePassword.textContent = "Show";
-    }
+passwordToggles.forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+        const passwordInput = toggle.previousElementSibling;
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggle.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            toggle.textContent = "Show";
+        }
+    });
 });
 
-document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    alert("Authentication is not connected yet.");
-});
+// Prevent form submission until the Django backend is connected
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+if (loginForm) {
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
+
+if (signupForm) {
+    signupForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
+const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+const resetPasswordForm = document.getElementById("resetPasswordForm");
+
+if (forgotPasswordForm) {
+    forgotPasswordForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
+
+if (resetPasswordForm) {
+    resetPasswordForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+    });
+}
